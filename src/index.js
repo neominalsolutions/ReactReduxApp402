@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import { todoReducer } from './store/reducers/todos.reducer';
 import { myStore } from './store/mystore';
+import Todos from './pages/Todos';
 
 
 
@@ -35,6 +35,7 @@ ReactDOM.render(
           <Route path='' element={<App />}>
             <Route path='home' element={<Home />} />
             <Route path='about' element={<About />} />
+            <Route path='todos' element={<Todos />} />
           </Route>
         </Routes>
       </BrowserRouter>
