@@ -15,8 +15,14 @@ export const FavoriteReducer = (state = FavoriteState, action) => {
 			// statedeki favorites üzerine action.payload dan gelen değeri ekle.
 			favorites: [action.payload, ...state.favorites],
 		};
+	} else if (action.type == 'Favoriden_Çıkart') {
+		return {
+			...state,
+			favorites: [
+				...state.favorites.filter((x) => x.id != action.payload.productId),
+			],
+		};
 	}
-
 	// eğer if'e girmezse state değiştirme olan state döndür.
 	return state;
 };

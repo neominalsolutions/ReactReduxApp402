@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavorite } from '../store/actions/favorite.action';
+import { addFavorite, removeFavorite } from '../store/actions/favorite.action';
 
 function Products() {
 	const products = [
@@ -72,7 +72,18 @@ function Products() {
 
 	const addToFavorite = (item) => {
 		console.log('eklenecek', item);
-		dispatch(addFavorite(item)); // dispacth de bu action çağar ve içerisine item gönder
+		// dispacth de bu action çağar ve içerisine item gönder
+
+		// buradan gelen item.id favori listesinde var mı ?  varsa favoriye eklenmiştir yoksa favoriden kaldırılmış yada favoriye hiç eklenmemiştir.
+
+		const exist = favorites.find((x) => x.id == item.id);
+
+		if (exist) {
+			// favorinin içinde ürün varsa
+			dispatch(removeFavorite(item.id));
+		} else {
+			dispatch(addFavorite(item)); // favoriye ekle
+		}
 	};
 
 	// fragment da stil tanımlanamaz
@@ -105,19 +116,11 @@ function Products() {
 								cursor: 'pointer',
 							}}
 						>
-							{favorites.length > 0 &&
-								favorites.map((favorite) => {
-									if (favorite.id == item.id) {
-										return <i class="bi bi-heart-fill"></i>;
-									} else {
-										return (
-											<>
-												{' '}
-												<i class="bi bi-heart"></i>
-											</>
-										);
-									}
-								})}
+							{favorites.find((x) => x.id == item.id) == undefined ? (
+								<i class="bi bi-heart"></i>
+							) : (
+								<i class="bi bi-heart-fill"></i>
+							)}
 						</div>
 						<div>{item.name}</div>
 						<div>Fiyat : {item.price} ₺</div>

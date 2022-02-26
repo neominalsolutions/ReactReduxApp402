@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
+	const favorites = useSelector((store) => store.favoriteState.favorites);
+
 	return (
 		<div>
 			<Link to="">Anasayfa</Link>
@@ -12,7 +15,7 @@ function Navbar() {
 
 			<span style={{ marginLeft: '20px' }}>
 				<i>
-					<i class="bi bi-heart-fill"></i> 3
+					<i class="bi bi-heart-fill"></i> {favorites.length}
 				</i>
 			</span>
 		</div>

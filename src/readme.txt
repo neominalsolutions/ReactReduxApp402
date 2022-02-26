@@ -22,3 +22,13 @@
 14. favori eklenince ürünler sayfasındaki favorileri dinlemeyiyiz.
 15. navbarda ise favori eklenince favori adet sayısını güncellemeliyiz.
 16. favori state dinlemek için useSelector kullanıyoruz.
+17. favorilerin dolu kalp boş kap olmasını kontrol ettik. 
+    // aşağıdaki kod ile ürün id ile favoriye atılan ürün idnin eşleşip eşleşmemesi durumuna göre kalp gösterdik.
+                    {favorites.find((x) => x.id == item.id) == undefined ? (
+								<i class="bi bi-heart"></i>
+							) : (
+								<i class="bi bi-heart-fill"></i>
+							)}
+
+18. action'a gittik removeFavorite adında bir action yazdık
+19. favorite reducer Favoriden_Çıkart için else if ekledik.
